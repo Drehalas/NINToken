@@ -6,6 +6,19 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
 contract KarmaToken is ERC20, Pausable, AccessControl {
+
+    // Error Messages for the contract
+
+    error ErrorAlreadyQueued(bytes32 txnHash);
+
+    error ErrorNotQueued(bytes32 txnHash);
+
+    error ErrorTimeNotInRange(uint256 blockTimestmap, uint256 timestamp);
+
+    error ErrorNotReady(uint256 blockTimestmap, uint256 timestamp);
+
+    error ErrorTimeExpired(uint256 blockTimestamp, uint256 expiresAt);
+
     struct VestingSchedule {
         uint256 start;
         uint256 cliff;
